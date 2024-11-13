@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Graduate Rates Choropleth Map</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        .tooltip {
+            position: absolute;
+            padding: 10px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            pointer-events: none;
+            opacity: 0;
+            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <a href="./main.html" class="text-xl font-bold text-blue-600">MedGrad Analytics</a>
+                    </div>
+                    <div class="hidden md:ml-6 md:flex md:space-x-8">
+                        <a href="./world-new.html"
+                            class="inline-flex items-center px-1 pt-1 text-gray-500 hover:text-gray-900 text-sm font-medium">World
+                            Map</a>
+                        <a href="./bubble-new.html"
+                            class="inline-flex items-center px-1 pt-1 text-gray-500 hover:text-gray-900 text-sm font-medium">Bubble
+                            Chart</a>
+                        <a href="./radar-new.html"
+                            class="inline-flex items-center px-1 pt-1 text-gray-500 hover:text-gray-900 text-sm font-medium">Radar
+                            Analysis</a>
+                        <a href="./scatter-new.html"
+                            class="inline-flex items-center px-1 pt-1 text-gray-500 hover:text-gray-900 text-sm font-medium">Scatter
+                            Plot</a>
+                        <a href="./line-new.html"
+                            class="inline-flex items-center px-1 pt-1 text-gray-500 hover:text-gray-900 text-sm font-medium">Trends</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Content Section -->
+    <div class="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
+        <div class="text-center">
+            <h1 class="text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">Medical Graduate
+                Rates Map</h1>
+            <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-500">Interactive map of medical graduates per 100,000
+                population</p>
+        </div>
+
+        <div class="mt-16 flex">
+            <div id="filters" class="w-72 bg-white rounded-lg shadow-lg p-6 mr-8">
+                <div class="space-y-6">
+                    <div id="controls" class="filter-section">
+                        <h3 class="text-lg font-semibold text-gray-700 mb-4">Year: <span id="year-display"></span></h3>
+                        <input type="range" id="year-slider" class="w-full mb-4">
+                    </div>
+
+                    <div class="filter-section">
+                        <h3 class="text-lg font-semibold text-gray-700 mb-4">Legend</h3>
+                        <div class="legend-container">
+                            <div id="legend" class="flex flex-wrap gap-2"></div>
+                        </div>
+                        <div id="bar-chart" class="mt-6"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="map" class="flex-1 bg-white rounded-lg shadow-lg p-6 relative">
+                <div id="tooltip" class="tooltip"></div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-2xl font-extrabold text-gray-900 mb-4">Understanding the Graph</h2>
+                <p class="text-gray-500">
+                    The Medical Graduate Rates Choropleth Map visualizes the distribution of medical graduates per
+                    100,000 people across various OECD countries, showing how these rates have changed over time. This
+                    map provides a geographically grounded view of medical graduate rates, helping us to identify
+                    regional patterns, disparities, and trends that might influence the healthcare workforce globally.
+                </p>
+                <h3 class="text-xl font-semibold text-gray-700 mt-4 mb-2">Why This Graph Was Chosen</h3>
+                <p class="text-gray-500">
+                    A choropleth map is particularly effective for this type of analysis because it leverages both
+                    spatial and quantitative data, allowing users to see medical graduate rates in the context of each
+                    country's location and size. By color-coding countries based on their medical graduate rate, we can
+                    immediately discern areas with high or low output of new medical professionals. This visualization
+                    helps us explore how each nation contributes to the overall healthcare workforce and understand
+                    which regions may be better positioned to meet healthcare demands based on their graduate output.
+                </p>
+                <h3 class="text-xl font-semibold text-gray-700 mt-4 mb-2">Data source</h3>
+                <p class="text-gray-500">
+                    The map combines data from two main sources: GeoJSON files for geographic country boundaries, and
+                    OECD Health Statistics for the medical graduates data. The OECD dataset includes values for medical
+                    graduates per 100,000 people, organized by country and year. By mapping each country’s rate over
+                    time, we gain valuable insights into the healthcare workforce trends and potential regional
+                    challenges in medical education.
+
+                    This choropleth map provides a geographic lens on the global healthcare workforce, showing which
+                    regions are producing medical graduates at rates that may sustain or improve healthcare access over
+                    time.
+                </p>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-base text-gray-400">© 2024 Derrick Song Analytics. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="./js/map.js"></script>
+</body>
+
+</html>

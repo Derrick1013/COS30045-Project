@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Graduates vs Active Physicians Scatter Plot</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        .trail {
+            fill: none;
+            stroke-width: 1;
+            opacity: 0.3;
+        }
+
+        .trail:hover {
+            opacity: 0.8;
+            stroke-width: 2;
+        }
+
+        .tooltip {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            pointer-events: none;
+            font-size: 12px;
+            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        #country-checkboxes {
+            max-height: 300px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            margin: 5px 0;
+        }
+
+        .color-indicator {
+            width: 12px;
+            height: 12px;
+            margin-right: 5px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <a href="./main.html" class="text-xl font-bold text-blue-600">MedGrad Analytics</a>
+                    </div>
+                    <div class="hidden md:ml-6 md:flex md:space-x-8">
+                        <a href="./world-new.html"
+                            class="inline-flex items-center px-1 pt-1 text-gray-500 hover:text-gray-900 text-sm font-medium">World
+                            Map</a>
+                        <a href="./bubble-new.html"
+                            class="inline-flex items-center px-1 pt-1 text-gray-500 hover:text-gray-900 text-sm font-medium">Bubble
+                            Chart</a>
+                        <a href="./radar-new.html"
+                            class="inline-flex items-center px-1 pt-1 text-gray-500 hover:text-gray-900 text-sm font-medium">Radar
+                            Analysis</a>
+                        <a href="./scatter-new.html"
+                            class="inline-flex items-center px-1 pt-1 text-gray-500 hover:text-gray-900 text-sm font-medium">Scatter
+                            Plot</a>
+                        <a href="./line-new.html"
+                            class="inline-flex items-center px-1 pt-1 text-gray-500 hover:text-gray-900 text-sm font-medium">Trends</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Content Section -->
+    <div class="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
+        <div class="text-center">
+            <h1 class="text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">Medical
+                Graduates vs Physicians</h1>
+            <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-500">Correlation analysis between medical graduates and
+                active physicians</p>
+        </div>
+
+        <div class="mt-16 flex">
+            <div id="filters" class="w-72 bg-white rounded-lg shadow-lg p-6 mr-8">
+                <div class="space-y-6">
+                    <div class="filter-section">
+                        <h3 class="text-lg font-semibold text-gray-700 mb-4">Select Countries:</h3>
+                        <div id="country-checkboxes" class="max-h-64 overflow-y-auto mb-4"></div>
+                        <div class="flex space-x-2">
+                            <button id="select-all-countries"
+                                class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors">Select
+                                All</button>
+                            <button id="clear-all-countries"
+                                class="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700 transition-colors">Clear
+                                All</button>
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <h3 class="text-lg font-semibold text-gray-700 mb-4">Select Year Range:</h3>
+                        <div class="year-slider space-y-4">
+                            <div>
+                                <label class="block text-sm text-gray-600 mb-2">Start Year: <span
+                                        id="start-year-value"></span></label>
+                                <input type="range" id="start-year" name="start-year" class="w-full">
+                            </div>
+                            <div>
+                                <label class="block text-sm text-gray-600 mb-2">End Year: <span
+                                        id="end-year-value"></span></label>
+                                <input type="range" id="end-year" name="end-year" class="w-full">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <label class="flex items-center space-x-2 text-gray-700">
+                            <input type="checkbox" id="show-trails" name="show-trails" class="rounded text-blue-600">
+                            <span>Show Country Trails</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div id="scatter-plot" class="flex-1 bg-white rounded-lg shadow-lg p-6"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-2xl font-extrabold text-gray-900 mb-4">About the Graph</h2>
+                <p class="text-gray-500">
+                    The Medical Graduates vs. Active Physicians Scatter Plot visually explores the relationship between
+                    the number of medical graduates per 100,000 people and the number of practicing physicians per 1,000
+                    people across OECD countries. This interactive scatter plot enables users to investigate how these
+                    two metrics correlate and vary across nations over time, giving insight into healthcare workforce
+                    sustainability and resource allocation.
+                </p>
+                <h3 class="text-xl font-semibold text-gray-700 mt-4 mb-2">Why This Graph Was Chosen</h3>
+                <p class="text-gray-500">
+                    A scatter plot is a powerful tool for highlighting correlations between two quantitative variables,
+                    making it ideal for analyzing how the production of medical graduates compares with the density of
+                    active physicians across countries. By plotting each country as a point on the graph, we can observe
+                    whether higher rates of medical graduates correspond to higher physician densities, providing
+                    valuable insights into how well each country might be replenishing its healthcare workforce. The
+                    chart’s interactivity—including a year range slider, country filtering, and optional trails showing
+                    historical paths—enables a dynamic, in-depth examination of changes in workforce dynamics over time.
+                </p>
+                <h3 class="text-xl font-semibold text-gray-700 mt-4 mb-2">Data source</h3>
+                <p class="text-gray-500">
+                    This visualization is built using a merged dataset from OECD Health Statistics, which provides
+                    annual counts of medical graduates and practicing physicians for various countries. The data covers
+                    multiple years, allowing for both temporal analysis and comparative country analysis.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-base text-gray-400">© 2024 Derrick Song Analytics. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="./js/scatter.js"></script>
+</body>
+
+</html>

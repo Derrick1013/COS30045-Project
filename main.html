@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Graduates Dashboard</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <a href="./main.html" class="text-xl font-bold text-blue-600">MedGrad Analytics</a>
+                    </div>
+                    <div class="hidden md:ml-6 md:flex md:space-x-8">
+                        <a href="./world-new.html" class="inline-flex items-center px-1 pt-1 text-gray-500 hover:text-gray-900 text-sm font-medium">Global Data Map</a>
+                        <a href="./bubble-new.html" class="inline-flex items-center px-1 pt-1 text-gray-500 hover:text-gray-900 text-sm font-medium">Economic Analysis</a>
+                        <a href="./radar-new.html" class="inline-flex items-center px-1 pt-1 text-gray-500 hover:text-gray-900 text-sm font-medium">Specialty Breakdown</a>
+                        <a href="./scatter-new.html" class="inline-flex items-center px-1 pt-1 text-gray-500 hover:text-gray-900 text-sm font-medium">Trends Insights</a>
+                        <a href="./line-new.html" class="inline-flex items-center px-1 pt-1 text-gray-500 hover:text-gray-900 text-sm font-medium">Historical Trends</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="bg-white">
+        <div class="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">Medical Graduates Dashboard</h1>
+                <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-500">Comprehensive analysis of medical graduate trends across countries and years</p>
+            </div>
+            
+            <!-- Dashboard Cards -->
+            <div class="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                <!-- World Map Card -->
+                <a href="./world-new.html" class="group">
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-200 hover:scale-105">
+                        <div class="p-6">
+                            <h3 class="text-lg font-semibold text-gray-900 group-hover:text-blue-600">Global Graduate Distribution</h3>
+                            <p class="mt-2 text-gray-500">Explore the distribution of medical graduates around the world.</p>
+                        </div>
+                        <div class="bg-gray-50 px-6 py-4">
+                            <span class="text-blue-600 group-hover:text-blue-800">Explore →</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Bubble Chart Card -->
+                <a href="./bubble-new.html" class="group">
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-200 hover:scale-105">
+                        <div class="p-6">
+                            <h3 class="text-lg font-semibold text-gray-900 group-hover:text-blue-600">Visualizing Health Expenditure</h3>
+                            <p class="mt-2 text-gray-500">Analyze the relationship between healthcare expenditure and medical graduates.</p>
+                        </div>
+                        <div class="bg-gray-50 px-6 py-4">
+                            <span class="text-blue-600 group-hover:text-blue-800">Explore →</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Radar Chart Card -->
+                <a href="./radar-new.html" class="group">
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-200 hover:scale-105">
+                        <div class="p-6">
+                            <h3 class="text-lg font-semibold text-gray-900 group-hover:text-blue-600">Detailed Medical Graduate Analysis</h3>
+                            <p class="mt-2 text-gray-500">Breakdown of medical graduates by specialty.</p>
+                        </div>
+                        <div class="bg-gray-50 px-6 py-4">
+                            <span class="text-blue-600 group-hover:text-blue-800">Explore →</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Scatter Plot Card -->
+                <a href="./scatter-new.html" class="group">
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-200 hover:scale-105">
+                        <div class="p-6">
+                            <h3 class="text-lg font-semibold text-gray-900 group-hover:text-blue-600">Correlation Analysis</h3>
+                            <p class="mt-2 text-gray-500">Examine the relationship between medical graduates and active physicians.</p>
+                        </div>
+                        <div class="bg-gray-50 px-6 py-4">
+                            <span class="text-blue-600 group-hover:text-blue-800">Explore →</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Line Chart Card -->
+                <a href="./line-new.html" class="group">
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-200 hover:scale-105">
+                        <div class="p-6">
+                            <h3 class="text-lg font-semibold text-gray-900 group-hover:text-blue-600">Graduate Trends</h3>
+                            <p class="mt-2 text-gray-500">Track the trends of medical graduates over time.</p>
+                        </div>
+                        <div class="bg-gray-50 px-6 py-4">
+                            <span class="text-blue-600 group-hover:text-blue-800">Explore →</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 mt-16">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <p class="text-base text-gray-400">© 2024 Derrick Song Analytics. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
